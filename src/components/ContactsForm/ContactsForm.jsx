@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import {
   Form,
   FormLabel,
@@ -6,12 +5,12 @@ import {
   ButtonSubmit,
 } from './ContactsForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContacts } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactsForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const onFormSubmit = event => {
     event.preventDefault();
@@ -28,7 +27,12 @@ export const ContactsForm = () => {
       return;
     }
 
-    dispatch(addContact(form.elements.name.value, form.elements.phone.value));
+    dispatch(
+      addContacts({
+        name: form.elements.name.value,
+        phone: form.elements.phone.value,
+      })
+    );
     form.reset();
   };
 
@@ -57,8 +61,4 @@ export const ContactsForm = () => {
       <ButtonSubmit type="submit">Add contact</ButtonSubmit>
     </Form>
   );
-};
-
-ContactsForm.propTypes = {
-  onFormSubmit: propTypes.func,
 };

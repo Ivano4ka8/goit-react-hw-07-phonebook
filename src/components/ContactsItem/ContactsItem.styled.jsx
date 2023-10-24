@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const ContactItem = styled.li`
+export const ContactsItem = styled.li`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: ${props => props.theme.spacing(3)};
-  min-width: 300px;
+  width: 300px;
 
   background-color: ${props => props.theme.colors.pink};
   padding: ${props => props.theme.spacing(2)};

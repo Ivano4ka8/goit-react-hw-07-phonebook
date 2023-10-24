@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import {
   FormInput,
   FormLabel,
@@ -6,11 +5,11 @@ import {
 import { FilterWrapper } from './FilterContacts.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
-import { getFilter } from 'redux/selectors';
+import { selectFilter } from 'redux/selectors';
 
 export const FilterContacts = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
 
   const handleChange = event => {
     dispatch(setFilter(event.target.value.toLowerCase()));
@@ -29,9 +28,4 @@ export const FilterContacts = () => {
       </FormLabel>
     </FilterWrapper>
   );
-};
-
-FilterContacts.propTypes = {
-  filter: propTypes.string,
-  filterChange: propTypes.func,
 };
